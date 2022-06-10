@@ -8,14 +8,14 @@
 ##
 <div align="center">
   <a href="https://github.com/dan-david">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=anabeatrizalmeida&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=anabeatrizalmeida&layout=compact&langs_count=7&theme=dracula"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=dan-david&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=dan-david&layout=compact&langs_count=7&theme=dracula"/>
 </div>
 
   ##
 <div> 
   <a href = "mailto:c.daniel.david@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="[https://www.linkedin.com/in/anabeatrizalmeida/](https://www.linkedin.com/in/danielcdavid/)" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+  <a href="[https://www.linkedin.com/in/dan-david/](https://www.linkedin.com/in/danielcdavid/)" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </div>
 
 
