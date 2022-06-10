@@ -1,6 +1,5 @@
 ### Hi, I'm Daniel David 👋
 <div>
-  <img align="right" alt="Rafa-pic" height="150" style="border-radius:50px;">
  </div>
  
 - 🔬 I’m looking to collaborate on Data Science projects
