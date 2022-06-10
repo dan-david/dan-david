@@ -3,14 +3,7 @@
   <img align="right" alt="Rafa-pic" height="150" style="border-radius:50px;" src="https://picrew.me/shareImg/org/202205/338224_cz1sqQJF.png">
  </div>
  
-- 💞️ I’m looking to collaborate on Data Science projects
-
-##
-<div align="center">
-  <a href="https://github.com/dan-david">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=dan-david&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=dan-david&layout=compact&langs_count=7&theme=dracula"/>
-</div>
+- 🔬 I’m looking to collaborate on Data Science projects
 
   ##
 <div> 
