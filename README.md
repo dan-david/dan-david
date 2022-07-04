@@ -2,7 +2,7 @@
 <div>
  </div>
  
-- 🔬 I’m looking to collaborate on Data Science projects
+- 🔬 I’m passionate about Data Science.
 
   ##
 <div> 
