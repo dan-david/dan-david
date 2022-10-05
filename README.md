@@ -33,17 +33,29 @@ License: paid service
 
 # How to run the API
 
-Install the required libraries:
+OS - Container running Debian GNU/Linux 11
+Python 3.10
 
-pip install -r requirements.txt
+Install requirements.txt or
 
+pip install -U "ray[serve]"  # installs Ray + dependencies for Ray Serve
+pip install transformers 
+pip install fastapi 
+pip install uvicorn
+pip install aiorwlock
+pip install tensorflow 
+
+Make sure no ray clusters are running with:
+
+ray stop
+ 
 Open a terminal and run:
 
 ray start --head --node-ip-address 127.0.0.1 --port 6379 --dashboard-host 0.0.0.0 --dashboard-port 8265
 
 Then open a second terminal, find the folder that contains api-launch.py and run:
 
-python api-launch.py
+python launch-api.py
 
 You now might access the ray dashboard at http://127.0.0.1:8265/#/node and the api link at http://127.0.0.1:8000/-/routes
 
