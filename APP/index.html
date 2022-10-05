@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="additional-style.css" />
+    <base href="/" />
+  </head>
+  <body>
+    <!-- Import Annyang Library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <!-- Import TensorFlow.js library -->
+    <script src="https://unpkg.com/@tensorflow/tfjs-core@2.4.0/dist/tf-core.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.4.0/dist/tf-converter.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.4.0/dist/tf-backend-webgl.js"></script>
+    <!-- Import MediaPipe library -->
+    <script src="https://unpkg.com/@tensorflow-models/face-landmarks-detection@0.0.1/dist/face-landmarks-detection.js"></script>
+    <!-- FACE API library -->
+    <script src="face-api.min.js"></script>
+
+    <section id="cards_long">
+      <div class="card">
+        <h1 class="card_text"><br />Facial Recognition</h1>
+        <div id="container" class="camView">
+          <canvas id="canvas"></canvas>
+          <video id="video" autoplay></video>
+        </div>
+      </div>
+
+      <div class="card">
+        <h1 class="card_text"><br />Behavior Score</h1>
+        <div class="row">
+          <div class="column">
+            <div id="behavior_cards_column_0"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h1 class="card_text"><br />Basic Emotions</h1>
+        <div id="emotion_cards"></div>
+      </div>
+
+      <div class="card">
+        <h1 class="card_text"><br />Speech Engine</h1>
+        <div class="row">
+          <div class="column">
+            <div id="behavior_cards_column_1"></div>
+            <div id="head_direction" class="undefined"></div>
+            <div id="eyes_direction" class="undefined"></div>
+          </div>
+          <div class="column">
+            <div id="behavior_cards_column_2"></div>
+          </div>
+          <div class="column">
+            <div id="behavior_cards_column_3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h1 class="card_text"><br />Meeting Goals</h1>
+        <div id="session_topics"></div>
+        <br /><br />
+      </div>
+    </section>
+  </body>
+  <!-- Emotion Recognition Engine -->
+  <script src="emotion-engine.js"></script>
+  <!-- NLP Engine -->
+  <script src="NLP.js"></script>
+
+  <footer height="0px"></footer>
+</html>

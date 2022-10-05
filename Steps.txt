@@ -1,0 +1,22 @@
+Each Media
+
+# Log Debug 
+Body Alignment
+Gaze direction
+Face emotion
+Speech emotion
+Pitch 
+Voice Pace
+
+# Log Eventos
+csv, data, hora, segundo, evento
+
+# Log Scores
+Attention Economics Score
+Mood Induction Score
+Value Internalizatoin Score
+Cognitive Resonance Score
+
+# Log Transcription
+
+# Log Diarization
