@@ -38,47 +38,40 @@ Python 3.10
 
 Install requirements.txt or
 
-pip install -U "ray[serve]"  # installs Ray + dependencies for Ray Serve
-pip install transformers 
-pip install fastapi 
-pip install uvicorn
-pip install aiorwlock
-pip install tensorflow 
+```
+pip install -U "ray[serve]"  # installs Ray + dependencies for Ray Serve <br>
+pip install transformers <br>
+pip install fastapi <br>
+pip install uvicorn <br>
+pip install aiorwlock <br>
+pip install tensorflow <br>
+pip install -e . # install the src code as a package <br> 
+```
 
 Make sure no ray clusters are running with:
 
+```
 ray stop
- 
+```
+
 Open a terminal and run:
 
+```
 ray start --head --node-ip-address 127.0.0.1 --port 6379 --dashboard-host 0.0.0.0 --dashboard-port 8265
+```
 
 Then open a second terminal, find the folder that contains api-launch.py and run:
 
+```
 python launch-api.py
+```
 
 You now might access the ray dashboard at http://127.0.0.1:8265/#/node and the api link at http://127.0.0.1:8000/-/routes
 
 You can then replace the API link to the one used in production if you deploy using the ray platform.
 
-To stop process, run 
+To stop all ray processes, run 
 
+```
 ray stop
-
-Installing engine package from local folder (editable mode)
-================
-
-This installs the package in develop mode. Any changes you make to the code will immediately apply across the system.
-The develop will not install the package but it will create a .egg-link in the deployment directory back to the project source code directory.
-It is like installing but instead of copying to the site-packages it adds a symbolic link.
-That way you can edit the source code and see the changes directly without having to reinstall every time that you make a little change.
-This is useful when you are the developer of that project hence the name develop mode.
-This is useful if you are the package developer and want to test changes. It also means you can't delete the folder without breaking the install.::
-
-   # option 1: bash command that install package in the current folder
-   pip install -e .
-
-   # option 2: bash command
-   python setup.py develop --user
-
-If you are just installing someone else's package you should use install.
+```
