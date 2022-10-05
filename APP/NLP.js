@@ -190,7 +190,7 @@ async function main() {
             '<br><br> ' +
             ' ' +
             time +
-            ' ' +
+            ' | ' +
             whatWasHeardArray[0] +
             '.';
 
