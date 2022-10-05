@@ -4,8 +4,11 @@ var user_id = undefined;
 let userAgent = navigator.userAgent;
 let browserName;
 var final_transcript = '';
+let word_count = 0;
+let full_transcript = '';
 let lastUrl = location.href;
 let commands = GenerateTopics();
+let current_minute = 0;
 var keys = Object.keys(commands);
 
 // Identify the current brownser
@@ -76,8 +79,6 @@ function query(data, engine) {
       for (let i = 0; i < prediction.length; i++) {
         emotion_label = prediction[i]['label'];
         emotion_score = prediction[i]['score'];
-
-        console.log(emotion_label + ': ' + emotion_score);
         document.getElementById(emotion_label).style.width =
           emotion_score * 100 + '%';
       }
@@ -175,8 +176,34 @@ async function main() {
 
     if (annyang) {
       annyang.addCallback('result', function (whatWasHeardArray) {
-        final_transcript += whatWasHeardArray[0] + '.';
+        var today = new Date();
+
+        if (current_minute != today.getMinutes()) {
+          current_minute = today.getMinutes();
+          var time = today.getHours() + ':' + today.getMinutes();
+
+          final_transcript +=
+            '[' +
+            word_count +
+            ']' +
+            ';' +
+            '<br><br> ' +
+            ' ' +
+            time +
+            ' ' +
+            whatWasHeardArray[0] +
+            '.';
+
+          word_count = whatWasHeardArray[0].trim().split(/\s+/).length;
+        } else {
+          word_count += whatWasHeardArray[0].trim().split(/\s+/).length;
+          final_transcript += whatWasHeardArray[0] + '.';
+        }
+
         final_transcript = final_transcript.toUpperCase();
+        final_transcript = final_transcript.replace('[0];', '');
+
+        document.getElementById('transcript-full').innerHTML = final_transcript;
 
         for (let i = 0; i < keys.length; i++) {
           key = keys[i];
@@ -187,7 +214,6 @@ async function main() {
         }
 
         engine = 'http://127.0.0.1:8000/api_v1/speech_emotion_detection';
-        console.log(whatWasHeardArray[0]);
         data = whatWasHeardArray[0];
 
         query(data, engine);

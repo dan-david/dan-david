@@ -75,3 +75,7 @@ To stop all ray processes, run
 ```
 ray stop
 ```
+
+# How to run the APP
+
+Once the API is running, you just have to run a local serve, serving index.html
