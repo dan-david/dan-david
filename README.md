@@ -55,7 +55,9 @@ RoBERTa builds on BERT’s language masking strategy and modifies key hyperparam
 
 Source: https://huggingface.co/arpanghoshal/EmoRoBERTa
 
-# How to run the API
+# How to run the API 
+
+The API is used to make real time inferences about the speech transcription. 
 
 OS - Container running Debian GNU/Linux 11
 Python 3.10
@@ -94,10 +96,29 @@ To stop all ray processes, run
 ray stop
 ```
 
-# How to run the Notebook
+# How to run the jupyter notebook
 
+The notebook is used to make post analytics including:
+
+* Processing audio files to get pitch emotion classes
+* Computing Attention Economics
+* Computing Mood Induction
+* Computing Value Internalization
+* Computing Cognitive Resonance Score
+
+The main inputs are: 
+
+* Logs with inferences made from the call
+* Audio files from each speaker
+
+How to run the notebook? 
+
+System requirements:
+
+```
 OS - Container running Debian GNU/Linux 11
 Python 3.10
+```
 
 Install ffmpeg and required packages
 
@@ -108,4 +129,4 @@ pip install -r requirements.txt
 
 # How to run the APP
 
-Once the API is running, you just have to run a local serve, serving index.html
+Once the API is running, you just have to run a local serve, serving index.html. You should open it on Microsoft Edge if using MAC and Chrome if using Windows.
