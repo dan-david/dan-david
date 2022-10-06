@@ -59,8 +59,12 @@ Source: https://huggingface.co/arpanghoshal/EmoRoBERTa
 
 The API is used to make real time inferences about the speech transcription. 
 
+System requirements:
+
+```
 OS - Container running Debian GNU/Linux 11
 Python 3.10
+```
 
 Install the src folder as a package
 
