@@ -6,7 +6,7 @@ To compute the cognitive resonance score and its main components, we need 6 diff
 * Body alignment (MediaPipe)
 * Eye Gaze (MediaPipe)
 * Face expression (FaceApi)
-* Audio Transcription (Google speech-to-text)
+* Audio Transcription (Annyang)
 * Speech emotion based on audio transcription (model HuggingFace EmoRoBERTa)
 * Speech emotion based on audio signals (model SpeechBrain emotion-recognition-wav2vec2-IEMOCAP)
 
@@ -27,15 +27,16 @@ Source: https://github.com/google/mediapipe
 
 Source: https://github.com/justadudewhohacks/face-recognition.js
 
-## Google Speech-to-Text
+## Annyang
 
-Currently using annyang library, which leverages google speech-to-text on chromium browsers and it is free. 
+Currently using annyang library, which leverages google speech-to-text on chromium browsers and it is open-source. 
+This library is currently used just for test purposes, the production tool would use Google Speech-to-Text tools directly.
 
 * Easy implementation on Javascript.
 * Can be optimized for medical terms.
-* License: paid service
+* License: MIT
 
-Source: https://cloud.google.com/speech-to-text
+Source annyang: https://cloud.google.com/speech-to-text
 
 ## SpeechBrain
 
