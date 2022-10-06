@@ -30,9 +30,31 @@ function getUserMediaSupported() {
 // Turn webcam on
 async function setupCamera() {
   if (getUserMediaSupported()) {
+    if (!navigator.mediaDevices?.enumerateDevices) {
+      console.log('enumerateDevices() not supported.');
+    } else {
+      // List cameras and microphones.
+      navigator.mediaDevices
+        .enumerateDevices()
+        .then((devices) => {
+          devices.forEach((device) => {
+            console.log(
+              `${device.kind}: ${device.label} id = ${device.deviceId}`
+            );
+          });
+        })
+        .catch((err) => {
+          console.error(`${err.name}: ${err.message}`);
+        });
+    }
+
     const videoConfig = {
       audio: false,
       video: {
+        //deviceId: {
+        //  exact:
+        //    'c8779e2f6cd2c79dbb7abc08e0030406e3a23cc4fd681e9cba4b291af35ed563',
+        //},
         // facingMode: 'environment',
         // Only setting the video to a specified size for large screen, on
         // mobile devices accept the default size.

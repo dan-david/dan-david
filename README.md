@@ -69,7 +69,11 @@ Python 3.10
 Install the src folder as a package
 
 ```
-pip install -e . # install the src code as a package <br> 
+pip install -e . # install the src code as a package <br>
+pip install -U "ray[default]" 
+pip install -U "ray[serve]"
+pip install tensorflow
+pip install transformers
 ```
 
 Install requirements.txt. Then, make sure no ray clusters are running with:
