@@ -100,6 +100,21 @@ To stop all ray processes, run
 ray stop
 ```
 
+## Ray Core and Ray Serve
+
+* Run both on AWS and Google infrastructure
+* Easily scale AI and Python applications
+* License: Apache-2.0 license
+
+Source: https://github.com/ray-project/ray
+
+## FastAPI
+
+* Easy to deploy APIs
+* License: MIT
+
+Source: https://github.com/tiangolo/fastapi
+
 # How to run the jupyter notebook
 
 The notebook is used to make post analytics including:
