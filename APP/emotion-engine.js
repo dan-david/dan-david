@@ -350,13 +350,13 @@ async function faceEmotion() {
     time =
       today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
-    face_emotions += time + ' | ' + primary_face_emotion + ' <br><br> ';
+    face_emotions += time + ' ; ' + primary_face_emotion + '\n';
 
     var download_face_emotions = function () {
       today = new Date();
       var myFile = new File(
         [face_emotions.toString()],
-        today.getHours() + '_' + today.getMinutes() + '_face.txt',
+        today.getHours() + '_' + today.getMinutes() + '_face.csv',
         {
           type: 'text/plain;charset=utf-8',
         }
@@ -561,19 +561,19 @@ function holisticBehavior() {
     if (HeadDirection != 'center') {
       score -= 15;
       document.getElementById('body-alignment').innerHTML = 'misaligned';
-      body_alignment_state += time + ' | ' + 'misaligned' + '<br><br> ';
+      body_alignment_state += time + ' ; ' + 'misaligned' + '\n';
     } else {
       document.getElementById('body-alignment').innerHTML = 'aligned';
-      body_alignment_state += time + ' | ' + 'aligned' + '<br><br> ';
+      body_alignment_state += time + ' ; ' + 'aligned' + '\n';
     }
 
     if (EyesDirection != 'center') {
       score -= 15;
       document.getElementById('gaze-direction').innerHTML = 'away';
-      gaze_direction_state += time + ' | ' + 'away' + ' <br><br> ';
+      gaze_direction_state += time + ' ; ' + 'away' + '\n';
     } else {
       document.getElementById('gaze-direction').innerHTML = 'straight';
-      gaze_direction_state += time + ' | ' + 'straight' + ' <br><br> ';
+      gaze_direction_state += time + ' ; ' + 'straight' + '\n';
     }
   }
 
@@ -589,7 +589,7 @@ var download_body_aligment = function () {
   today = new Date();
   var myFile = new File(
     [body_alignment_state.toString()],
-    today.getHours() + '_' + today.getMinutes() + '_body.txt',
+    today.getHours() + '_' + today.getMinutes() + '_body.csv',
     {
       type: 'text/plain;charset=utf-8',
     }
@@ -604,7 +604,7 @@ var download_gaze_aligment = function () {
   today = new Date();
   var myFile = new File(
     [gaze_direction_state.toString()],
-    today.getHours() + '_' + today.getMinutes() + '_gaze.txt',
+    today.getHours() + '_' + today.getMinutes() + '_gaze.csv',
     {
       type: 'text/plain;charset=utf-8',
     }

@@ -88,7 +88,7 @@ function query(data, engine) {
       time =
         today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
-      speech_emotions += time + ' | ' + primary_speech_emotion + ' <br><br> ';
+      speech_emotions += time + ' ; ' + primary_speech_emotion + '\n';
     }
   };
 
@@ -101,7 +101,7 @@ var download_speech_emotions = function () {
   today = new Date();
   var myFile = new File(
     [speech_emotions.toString()],
-    today.getHours() + '_' + today.getMinutes() + '_speech.txt',
+    today.getHours() + '_' + today.getMinutes() + '_speech.csv',
     {
       type: 'text/plain;charset=utf-8',
     }
@@ -195,7 +195,7 @@ async function main() {
         today.getMinutes() +
         '_' +
         today.getSeconds() +
-        '_transcript.txt',
+        '_transcript.csv',
       {
         type: 'text/plain;charset=utf-8',
       }
@@ -214,7 +214,7 @@ async function main() {
         today.getMinutes() +
         '_' +
         today.getSeconds() +
-        '_voice_pace.txt',
+        '_voice_pace.csv',
       {
         type: 'text/plain;charset=utf-8',
       }
@@ -245,11 +245,10 @@ async function main() {
           ':' +
           today.getSeconds();
 
-        final_transcript +=
-          time + ' | ' + whatWasHeardArray[0] + '.' + ' <br><br> ';
+        final_transcript += time + ' ; ' + whatWasHeardArray[0] + '.' + '\n';
 
         word_count = whatWasHeardArray[0].trim().split(/\s+/).length;
-        full_word_count += time + ' | ' + word_count + ' <br><br> ';
+        full_word_count += time + ' ; ' + word_count + '\n';
 
         // if (word_count > 160) {
         //  document.getElementById('voice-pace').innerHTML = 'fast';
@@ -258,8 +257,6 @@ async function main() {
         //} else {
         //  document.getElementById('voice-pace').innerHTML = 'normal';
         //}
-
-        final_transcript = final_transcript.toUpperCase();
 
         document.getElementById('transcript-full').innerHTML = final_transcript;
 
