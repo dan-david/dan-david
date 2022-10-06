@@ -570,10 +570,10 @@ function holisticBehavior() {
     if (EyesDirection != 'center') {
       score -= 15;
       document.getElementById('gaze-direction').innerHTML = 'away';
-      gaze_direction_state += time + ' | ' + 'away' + '<br><br> ';
+      gaze_direction_state += time + ' | ' + 'away' + ' <br><br> ';
     } else {
       document.getElementById('gaze-direction').innerHTML = 'straight';
-      gaze_direction_state += time + ' | ' + 'straight' + '<br><br> ';
+      gaze_direction_state += time + ' | ' + 'straight' + ' <br><br> ';
     }
   }
 

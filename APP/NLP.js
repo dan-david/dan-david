@@ -89,8 +89,6 @@ function query(data, engine) {
         today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
       speech_emotions += time + ' | ' + primary_speech_emotion + ' <br><br> ';
-
-      console.log(speech_emotions);
     }
   };
 
@@ -192,7 +190,12 @@ async function main() {
     today = new Date();
     var myFile = new File(
       [final_transcript],
-      today.getHours() + '_' + today.getMinutes() + '_transcript.txt',
+      today.getHours() +
+        '_' +
+        today.getMinutes() +
+        '_' +
+        today.getSeconds() +
+        '_transcript.txt',
       {
         type: 'text/plain;charset=utf-8',
       }
@@ -201,6 +204,25 @@ async function main() {
   };
 
   document.getElementById('button_transcript').onclick = download_transcript;
+
+  var download_voice_pace = function () {
+    today = new Date();
+    var myFile = new File(
+      [full_word_count],
+      today.getHours() +
+        '_' +
+        today.getMinutes() +
+        '_' +
+        today.getSeconds() +
+        '_voice_pace.txt',
+      {
+        type: 'text/plain;charset=utf-8',
+      }
+    );
+    saveAs(myFile);
+  };
+
+  document.getElementById('button_voice_pace').onclick = download_voice_pace;
 
   GenerateBehaviorCards();
 
@@ -216,37 +238,28 @@ async function main() {
     if (annyang) {
       annyang.addCallback('result', function (whatWasHeardArray) {
         var today = new Date();
+        var time =
+          today.getHours() +
+          ':' +
+          today.getMinutes() +
+          ':' +
+          today.getSeconds();
 
-        if (current_minute != today.getMinutes()) {
-          current_minute = today.getMinutes();
-          var time = today.getHours() + ':' + today.getMinutes();
+        final_transcript +=
+          time + ' | ' + whatWasHeardArray[0] + '.' + ' <br><br> ';
 
-          final_transcript +=
-            ' | ' +
-            word_count +
-            ' <br><br> ' +
-            ' ' +
-            time +
-            ' | ' +
-            whatWasHeardArray[0] +
-            '.';
+        word_count = whatWasHeardArray[0].trim().split(/\s+/).length;
+        full_word_count += time + ' | ' + word_count + ' <br><br> ';
 
-          if (word_count > 160) {
-            document.getElementById('voice-pace').innerHTML = 'fast';
-          } else if (word_count > 0 && word_count < 110) {
-            document.getElementById('voice-pace').innerHTML = 'slow';
-          } else {
-            document.getElementById('voice-pace').innerHTML = 'normal';
-          }
-
-          word_count = whatWasHeardArray[0].trim().split(/\s+/).length;
-        } else {
-          word_count += whatWasHeardArray[0].trim().split(/\s+/).length;
-          final_transcript += whatWasHeardArray[0] + '.';
-        }
+        // if (word_count > 160) {
+        //  document.getElementById('voice-pace').innerHTML = 'fast';
+        //} else if (word_count > 0 && word_count < 110) {
+        //  document.getElementById('voice-pace').innerHTML = 'slow';
+        //} else {
+        //  document.getElementById('voice-pace').innerHTML = 'normal';
+        //}
 
         final_transcript = final_transcript.toUpperCase();
-        final_transcript = final_transcript.replace(' | 0 ', '');
 
         document.getElementById('transcript-full').innerHTML = final_transcript;
 
