@@ -5,3 +5,4 @@ speechbrain
 *.wav
 *.devcontainer
 */wav2vec2_checkpoints
+*/pretrained_models

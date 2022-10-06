@@ -93,14 +93,12 @@ ray stop
 OS - Container running Debian GNU/Linux 11
 Python 3.10
 
-Install ffmpeg
+Install ffmpeg and required packages
 
 ```
 sudo apt install ffmpeg
+pip install -r requirements.txt
 ```
-
-Install requirements.txt.
-
 
 # How to run the APP
 
