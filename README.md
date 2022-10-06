@@ -62,7 +62,7 @@ The API is used to make real time inferences about the speech transcription.
 System requirements:
 
 ```
-OS - Container running Debian GNU/Linux 11
+OS - Docker container running Debian GNU/Linux 11
 Python 3.10
 ```
 
@@ -120,7 +120,7 @@ How to run the notebook?
 System requirements:
 
 ```
-OS - Container running Debian GNU/Linux 11
+OS - Docker container running Debian GNU/Linux 11
 Python 3.10
 ```
 
