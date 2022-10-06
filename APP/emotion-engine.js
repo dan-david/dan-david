@@ -3,6 +3,7 @@ const canvas = document.getElementById('canvas');
 let ctx;
 let videoWidth, videoHeight;
 var model_emotion = undefined;
+var face_emotions = '';
 
 function drawPath(ctx, points, closePath) {
   const region = new Path2D();
@@ -317,6 +318,51 @@ async function faceEmotion() {
       100 * detection[0]['expressions']['surprised'] + '%';
     document.getElementById('faceneutral').style.width =
       100 * detection[0]['expressions']['neutral'] + '%';
+
+    face_emotion_labels = [
+      'angry',
+      'disgusted',
+      'fearful',
+      'happy',
+      'sad',
+      'surprised',
+      'neutral',
+    ];
+
+    face_emotion_probs = [
+      detection[0]['expressions']['angry'],
+      detection[0]['expressions']['disgusted'],
+      detection[0]['expressions']['fearful'],
+      detection[0]['expressions']['happy'],
+      detection[0]['expressions']['sad'],
+      detection[0]['expressions']['surprised'],
+      detection[0]['expressions']['neutral'],
+    ];
+
+    max_index = face_emotion_probs.indexOf(Math.max(...face_emotion_probs));
+
+    primary_face_emotion = face_emotion_labels[max_index];
+
+    today = new Date();
+    time =
+      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
+    face_emotions += time + ' | ' + primary_face_emotion + ' <br><br> ';
+
+    var download_face_emotions = function () {
+      today = new Date();
+      var myFile = new File(
+        [face_emotions.toString()],
+        today.getHours() + '_' + today.getMinutes() + '_transcript.txt',
+        {
+          type: 'text/plain;charset=utf-8',
+        }
+      );
+      saveAs(myFile);
+    };
+
+    document.getElementById('button_face_emotions').onclick =
+      download_face_emotions;
   }
 
   if (user_id) {
@@ -507,9 +553,16 @@ function holisticBehavior() {
 
     if (HeadDirection != 'center') {
       score -= 15;
+      document.getElementById('body-alignment').innerHTML = 'misaligned';
+    } else {
+      document.getElementById('body-alignment').innerHTML = 'aligned';
     }
+
     if (EyesDirection != 'center') {
       score -= 15;
+      document.getElementById('gaze-direction').innerHTML = 'away';
+    } else {
+      document.getElementById('gaze-direction').innerHTML = 'straight';
     }
     if (angry > 25 || disgust > 25) {
       score = 25;
@@ -521,10 +574,10 @@ function holisticBehavior() {
 
   score = Math.max(0, score);
 
-  document.getElementById('cognitive resonance').style.width = score + '%';
-  document.getElementById('attention economics').style.width = score + '%';
-  document.getElementById('mood induction').style.width = score + '%';
-  document.getElementById('value internalization').style.width = score + '%';
+  //document.getElementById('cognitive resonance').style.width = score + '%';
+  //document.getElementById('attention economics').style.width = score + '%';
+  //document.getElementById('mood induction').style.width = score + '%';
+  //document.getElementById('value internalization').style.width = score + '%';
 
   window.requestAnimationFrame(holisticBehavior);
 }

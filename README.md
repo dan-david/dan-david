@@ -1,15 +1,20 @@
 AffectCx
 ==============================
 
-To compute the cognitive resonance score and its main components, we need 8 different models: 
+To compute the cognitive resonance score and its main components, we need 7 different models: 
 
+* Body alignment (MediaPipe)
+* Eye Gaze (MediaPipe)
 * Face expression (FaceApi)
 * Audio Transcription (Google speech-to-text)
-* Speech diarization (Google speech-to-text)
-* Voice pace (heuristic)
+* Voice pace (Heuristic)
 * Speech emotion based on audio transcription (HuggingFace model)
 * Speech emotion based on audio signals (HuggingFace model)
 
+## MediaPipe
+
+* Performant (robust when compared to other publicly available models)
+* Runs on Javascript (runs on client side to avoid latency)
 ## Face-API JS
 
 Source: https://github.com/justadudewhohacks/face-recognition.js
@@ -36,19 +41,13 @@ License: paid service
 OS - Container running Debian GNU/Linux 11
 Python 3.10
 
-Install requirements.txt or
+Install the src folder as a package
 
 ```
-pip install -U "ray[serve]"  # installs Ray + dependencies for Ray Serve <br>
-pip install transformers <br>
-pip install fastapi <br>
-pip install uvicorn <br>
-pip install aiorwlock <br>
-pip install tensorflow <br>
 pip install -e . # install the src code as a package <br> 
 ```
 
-Make sure no ray clusters are running with:
+Install requirements.txt. Then, make sure no ray clusters are running with:
 
 ```
 ray stop
@@ -75,6 +74,20 @@ To stop all ray processes, run
 ```
 ray stop
 ```
+
+# How to run the Notebook
+
+OS - Container running Debian GNU/Linux 11
+Python 3.10
+
+Install ffmpeg
+
+```
+sudo apt install ffmpeg
+```
+
+Install requirements.txt.
+
 
 # How to run the APP
 

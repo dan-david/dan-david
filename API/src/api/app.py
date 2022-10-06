@@ -4,7 +4,7 @@ from ray import serve
 from transformers import RobertaTokenizerFast, TFRobertaForSequenceClassification, pipeline
 from fastapi.middleware.cors import CORSMiddleware
 
-#Create an object of class FastAPI
+# Create an object of class FastAPI
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -14,13 +14,16 @@ app.add_middleware(
     allow_methods=["POST", "GET"],
 )
 
+
 class RequestSchema(BaseModel):
     '''In fast-api this class is created just for documentation purposes'''
     features: str
 
+
 class ResponseSchema(BaseModel):
     '''In fast-api this class is created just for documentation purposes'''
     prediction: str
+
 
 @serve.deployment(route_prefix="/api_v1")
 @serve.ingress(app)
@@ -28,13 +31,16 @@ class AffectCxAPI_v1:
 
     def __init__(self):
 
-        tokenizer = RobertaTokenizerFast.from_pretrained("arpanghoshal/EmoRoBERTa")
-        model = TFRobertaForSequenceClassification.from_pretrained("arpanghoshal/EmoRoBERTa")
-        self.emotion = pipeline('sentiment-analysis', model='arpanghoshal/EmoRoBERTa', return_all_scores= True)
+        tokenizer = RobertaTokenizerFast.from_pretrained(
+            "arpanghoshal/EmoRoBERTa")
+        model = TFRobertaForSequenceClassification.from_pretrained(
+            "arpanghoshal/EmoRoBERTa")
+        self.emotion = pipeline(
+            'sentiment-analysis', model='arpanghoshal/EmoRoBERTa', return_all_scores=True)
 
     @app.get("/")
     def root(self):
-        return "Hello World!"
+        return "AffectCx API"
 
     @app.post("/speech_emotion_detection")
     def face_detection(self, request: RequestSchema):

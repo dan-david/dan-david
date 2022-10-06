@@ -29,18 +29,7 @@ function BrownserIdentification() {
 
 // Create the topics of interest on the html page
 function GenerateTopics() {
-  var keys = [
-    'Type 1 diabetes',
-    'Research background',
-    'Clinical trial',
-    'Heart failure',
-    'Covid',
-    'Melanoma',
-    'Hair loss',
-    'Allergies',
-    'Glaucoma',
-    'Glioblastoma',
-  ];
+  var keys = [];
 
   const commands = {};
 
@@ -163,6 +152,21 @@ function GenerateBehaviorCards() {
 // Main function
 async function main() {
   // Generate Behavior Cards
+
+  var download_transcript = function () {
+    today = new Date();
+    var myFile = new File(
+      [final_transcript],
+      today.getHours() + '_' + today.getMinutes() + '_transcript.txt',
+      {
+        type: 'text/plain;charset=utf-8',
+      }
+    );
+    saveAs(myFile);
+  };
+
+  document.getElementById('button_transcript').onclick = download_transcript;
+
   GenerateBehaviorCards();
 
   browserName = BrownserIdentification();
@@ -183,16 +187,22 @@ async function main() {
           var time = today.getHours() + ':' + today.getMinutes();
 
           final_transcript +=
-            '[' +
+            ' | ' +
             word_count +
-            ']' +
-            ';' +
-            '<br><br> ' +
+            ' <br><br> ' +
             ' ' +
             time +
             ' | ' +
             whatWasHeardArray[0] +
             '.';
+
+          if (word_count > 160) {
+            document.getElementById('voice-pace').innerHTML = 'fast';
+          } else if (word_count > 0 && word_count < 110) {
+            document.getElementById('voice-pace').innerHTML = 'slow';
+          } else {
+            document.getElementById('voice-pace').innerHTML = 'normal';
+          }
 
           word_count = whatWasHeardArray[0].trim().split(/\s+/).length;
         } else {
@@ -201,7 +211,7 @@ async function main() {
         }
 
         final_transcript = final_transcript.toUpperCase();
-        final_transcript = final_transcript.replace('[0];', '');
+        final_transcript = final_transcript.replace(' | 0 ', '');
 
         document.getElementById('transcript-full').innerHTML = final_transcript;
 
