@@ -1,13 +1,12 @@
 AffectCx
 ==============================
 
-To compute the cognitive resonance score and its main components, we need 7 different models: 
+To compute the cognitive resonance score and its main components, we need 6 different models: 
 
 * Body alignment (MediaPipe)
 * Eye Gaze (MediaPipe)
 * Face expression (FaceApi)
 * Audio Transcription (Google speech-to-text)
-* Voice pace (Heuristic)
 * Speech emotion based on audio transcription (model HuggingFace EmoRoBERTa)
 * Speech emotion based on audio signals (model SpeechBrain emotion-recognition-wav2vec2-IEMOCAP)
 
