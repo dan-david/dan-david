@@ -8,13 +8,14 @@ To compute the cognitive resonance score and its main components, we need 7 diff
 * Face expression (FaceApi)
 * Audio Transcription (Google speech-to-text)
 * Voice pace (Heuristic)
-* Speech emotion based on audio transcription (HuggingFace model)
-* Speech emotion based on audio signals (HuggingFace model)
+* Speech emotion based on audio transcription (model HuggingFace EmoRoBERTa)
+* Speech emotion based on audio signals (model SpeechBrain emotion-recognition-wav2vec2-IEMOCAP)
 
 ## MediaPipe
 
 * Performant (robust when compared to other publicly available models)
 * Runs on Javascript (runs on client side to avoid latency)
+
 ## Face-API JS
 
 Source: https://github.com/justadudewhohacks/face-recognition.js
@@ -29,12 +30,24 @@ License: MIT license
 Source: https://cloud.google.com/speech-to-text
 License: paid service
 
-* Optimized for medical
+Currently using annyang library, which leverages google speech-to-text on chromium browsers and it is free. 
+
 * Easy implementation on Javascript.
+* Can be optimized for medical terms.
 
-## Hugging face model
+## SpeechBrain
 
-* Performant and publicly available model.
+* Performant and Open-Source conversational AI Toolkit.
+
+Source: https://speechbrain.github.io/
+
+## HuggingFace EmoRoBERTa
+
+The RoBERTa model was proposed in RoBERTa: A Robustly Optimized BERT Pretraining Approach by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. It is based on Google’s BERT model released in 2018.
+
+RoBERTa builds on BERT’s language masking strategy and modifies key hyperparameters in BERT, including removing BERT’s next-sentence pretraining objective, and training with much larger mini-batches and learning rates. RoBERTa was also trained on an order of magnitude more data than BERT, for a longer amount of time. This allows RoBERTa representations to generalize even better to downstream tasks compared to BERT.
+
+Source: https://huggingface.co/arpanghoshal/EmoRoBERTa
 
 # How to run the API
 
