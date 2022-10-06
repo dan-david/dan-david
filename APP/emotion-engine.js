@@ -4,6 +4,9 @@ let ctx;
 let videoWidth, videoHeight;
 var model_emotion = undefined;
 var face_emotions = '';
+var speech_emotions = '';
+var body_alignment_state = '';
+var gaze_direction_state = '';
 
 function drawPath(ctx, points, closePath) {
   const region = new Path2D();
@@ -353,7 +356,7 @@ async function faceEmotion() {
       today = new Date();
       var myFile = new File(
         [face_emotions.toString()],
-        today.getHours() + '_' + today.getMinutes() + '_transcript.txt',
+        today.getHours() + '_' + today.getMinutes() + '_face.txt',
         {
           type: 'text/plain;charset=utf-8',
         }
@@ -551,28 +554,28 @@ function holisticBehavior() {
     );
     neutral = parseInt(document.getElementById('faceneutral').style.width, 10);
 
+    today = new Date();
+    time =
+      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
     if (HeadDirection != 'center') {
       score -= 15;
       document.getElementById('body-alignment').innerHTML = 'misaligned';
+      body_alignment_state += time + ' | ' + 'misaligned' + '<br><br> ';
     } else {
       document.getElementById('body-alignment').innerHTML = 'aligned';
+      body_alignment_state += time + ' | ' + 'aligned' + '<br><br> ';
     }
 
     if (EyesDirection != 'center') {
       score -= 15;
       document.getElementById('gaze-direction').innerHTML = 'away';
+      gaze_direction_state += time + ' | ' + 'away' + '<br><br> ';
     } else {
       document.getElementById('gaze-direction').innerHTML = 'straight';
-    }
-    if (angry > 25 || disgust > 25) {
-      score = 25;
-    }
-    if (happy > 50 || surprise > 50) {
-      score = 100;
+      gaze_direction_state += time + ' | ' + 'straight' + '<br><br> ';
     }
   }
-
-  score = Math.max(0, score);
 
   //document.getElementById('cognitive resonance').style.width = score + '%';
   //document.getElementById('attention economics').style.width = score + '%';
@@ -581,6 +584,36 @@ function holisticBehavior() {
 
   window.requestAnimationFrame(holisticBehavior);
 }
+
+var download_body_aligment = function () {
+  today = new Date();
+  var myFile = new File(
+    [body_alignment_state.toString()],
+    today.getHours() + '_' + today.getMinutes() + '_body.txt',
+    {
+      type: 'text/plain;charset=utf-8',
+    }
+  );
+  saveAs(myFile);
+};
+
+document.getElementById('button_body_alignment').onclick =
+  download_body_aligment;
+
+var download_gaze_aligment = function () {
+  today = new Date();
+  var myFile = new File(
+    [gaze_direction_state.toString()],
+    today.getHours() + '_' + today.getMinutes() + '_gaze.txt',
+    {
+      type: 'text/plain;charset=utf-8',
+    }
+  );
+  saveAs(myFile);
+};
+
+document.getElementById('button_gaze_direction').onclick =
+  download_gaze_aligment;
 
 function GenerateEmotionCards() {
   var keys = [

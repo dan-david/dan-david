@@ -6,6 +6,7 @@ let browserName;
 var final_transcript = '';
 let word_count = 0;
 let full_transcript = '';
+let full_word_count = '';
 let lastUrl = location.href;
 let commands = GenerateTopics();
 let current_minute = 0;
@@ -65,12 +66,31 @@ function query(data, engine) {
       response = xhr.responseText;
       prediction = JSON.parse(response)['prediction'];
 
+      speech_emotion_labels = [];
+      speech_emotion_probs = [];
+
       for (let i = 0; i < prediction.length; i++) {
         emotion_label = prediction[i]['label'];
+        speech_emotion_labels = speech_emotion_labels.concat([emotion_label]);
         emotion_score = prediction[i]['score'];
+        speech_emotion_probs = speech_emotion_probs.concat([emotion_score]);
         document.getElementById(emotion_label).style.width =
           emotion_score * 100 + '%';
       }
+
+      max_index = speech_emotion_probs.indexOf(
+        Math.max(...speech_emotion_probs)
+      );
+
+      primary_speech_emotion = speech_emotion_labels[max_index];
+
+      today = new Date();
+      time =
+        today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
+      speech_emotions += time + ' | ' + primary_speech_emotion + ' <br><br> ';
+
+      console.log(speech_emotions);
     }
   };
 
@@ -78,6 +98,21 @@ function query(data, engine) {
 
   xhr.send(payload);
 }
+
+var download_speech_emotions = function () {
+  today = new Date();
+  var myFile = new File(
+    [speech_emotions.toString()],
+    today.getHours() + '_' + today.getMinutes() + '_speech.txt',
+    {
+      type: 'text/plain;charset=utf-8',
+    }
+  );
+  saveAs(myFile);
+};
+
+document.getElementById('button_speech_emotions').onclick =
+  download_speech_emotions;
 
 // Generate html cards for different emotions
 function GenerateBehaviorCards() {
