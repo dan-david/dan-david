@@ -2,7 +2,7 @@
 <div>
  </div>
  
-- 🔬 I’m passionate about Data Science.
+- 🔬 I’m passionate about AI & ML.
 
   ##
 <div> 
